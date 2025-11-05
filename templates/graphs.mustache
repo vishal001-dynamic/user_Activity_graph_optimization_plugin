@@ -1,0 +1,45 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<div class="user-activity-graphs">
+    {{#nodata_all}}
+        <div class="alert alert-info text-center" style="margin-bottom: 20px;">
+            {{#str}} nodataavailable, block_user_activity_graphs {{/str}}
+        </div>
+    {{/nodata_all}}
+
+    {{^nodata_all}}
+        <div id="graphs-loading" class="text-center" style="padding: 50px;">
+            {{!<strong>Loading graphs...</strong>}}
+            <img src="/blocks/user_activity_graphs/KNOWXBOX-logo_02.gif" width="50"/> 
+        </div>
+
+        <div id="graphs-wrapper" style="display: none;">
+            <div class="charts-container" style="display: flex; flex-wrap: wrap; gap: 20px;">
+                <div class="chart-box" style="flex: 1 1 150px; min-width: 150px;">
+                    <h5 style="text-align: center;">Last 7 Days Logged-in Users</h5>
+                    <canvas id="dailyLoginsChart" style="margin-top: 70px;"></canvas>
+                </div>
+
+                <div class="chart-box" style="flex: 1 1 150px; min-width: 150px;">
+                    <h5 style="text-align: center;">Top 5 Most Visited Courses</h5>
+                    {{#nodata_topcourses}}
+                        <div class="alert alert-info text-center" style="margin-top: 100px;">
+                            {{#str}} nodataavailable, block_user_activity_graphs {{/str}}
+                        </div>
+                    {{/nodata_topcourses}}
+                    <canvas id="topCoursesChart"></canvas>
+                </div>
+
+                <div class="chart-box" style="flex: 1 1 150px; min-width: 150px;">
+                    <h5 style="text-align: center;">Top 5 Most Enrolled Courses</h5>
+                    {{#nodata_enrolments}}
+                        <div class="alert alert-info text-center" style="margin-top: 100px;">
+                            {{#str}} nodataavailable, block_user_activity_graphs {{/str}}
+                        </div>
+                    {{/nodata_enrolments}}
+                    <canvas id="enrolmentsChart"></canvas>
+                </div>
+            </div>
+        </div>
+    {{/nodata_all}}
+</div>
